@@ -40,3 +40,10 @@ class GameActions():
         y = self.food.y * GameConfig.CELLSIZE
         food_rectangle = pygame.Rect(x, y, GameConfig.CELLSIZE, GameConfig.CELLSIZE)
         pygame.draw.rect(self.game_window, GameConfig.RED, food_rectangle)
+
+
+    def create_game_score(self, score):
+        game_score = self.font_style.render('Score: %s' % (score), True, GameConfig.WHITE)
+        game_score_rectangle = game_score.get_rect()
+        game_score_rectangle.topleft = (GameConfig.WINDOW_WIDTH - 120, 10)
+        self.game_window.blit(game_score, game_score_rectangle)
