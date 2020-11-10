@@ -1,19 +1,21 @@
-class Configuration():
-    FPS = 8
-    MENU_FPS = 60
-    WINDOW_WIDTH = 640
-    WINDOW_HEIGHT = 480
-    CELLSIZE = 20
-    assert WINDOW_WIDTH % CELLSIZE == 0, "Window width must be a multiple of cell size."
-    assert WINDOW_HEIGHT % CELLSIZE == 0, "Window height must be a multiple of cell size."
-    CELLWIDTH = int(WINDOW_WIDTH / CELLSIZE)
-    CELLHEIGHT = int(WINDOW_HEIGHT / CELLSIZE)
+from random import randint
+from game_config import GameConfig
 
-    # Colors
-    WHITE = (255, 255, 255)
-    BLACK = (0,   0,   0)
-    RED = (255,   0,   0)
-    GREEN = (0, 255,   0)
-    DARKGREEN = (0, 155,   0)
-    DARKGRAY = (40,  40,  40)
-    BG_COLOR = BLACK
+class GameFood():
+  def __init__(self):
+    self.setNewLocation()
+  
+  def setNewLocation(self):
+      print(f'cell width: {GameConfig.CELLWIDTH}, cell height: {GameConfig.CELLHEIGHT}')
+      self.x = randint(0, GameConfig.CELLWIDTH - 1)
+      self.y = randint(0, GameConfig.CELLHEIGHT - 1)
+
+
+
+def main():
+    food = GameFood()
+    print(food.x, food.y)
+
+
+if __name__ == '__main__':
+    main()
