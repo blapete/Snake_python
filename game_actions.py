@@ -49,8 +49,8 @@ class GameActions():
         self.game_window.blit(game_score, game_score_rectangle)
 
 
-    def create_game_frame(self, fps):
-        print(f'clock is ticking at {fps} frames per second')
+    def create_game_frame(self, fps=None):
+        # print(f'clock is ticking at {fps} frames per second')
         self.game_window.fill(GameConfig.BG_COLOR)
         self.create_grid_pattern()
         self.create_game_snake()
@@ -58,3 +58,16 @@ class GameActions():
         self.create_game_score(len(self.snake.snake_coordinates) - 3)
         pygame.display.update()
         self.game_clock.tick(GameConfig.FPS)
+
+
+    def check_user_key_press(self):
+        if len(pygame.event.get(pygame.QUIT)) > 0:
+            pygame.quit()
+            quit()
+        user_key_up = pygame.event.get(pygame.KEYUP)
+        if len(user_key_up) == 0:
+            return None
+        if user_key_up[0].key == pygame.K_ESCAPE:
+            pygame.quit()
+            quit()
+        return user_key_up[0].key
