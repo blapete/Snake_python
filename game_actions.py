@@ -84,3 +84,12 @@ class GameActions():
             self.snake.direction = self.snake.DOWN
         elif key_press.key == pygame.K_ESCAPE:
             pygame.quit()
+
+
+    def game_reset(self):
+        del self.food
+        del self.snake
+        GameConfig.FPS = 8
+        self.food = GameFood()
+        self.snake = GameSnake()
+        return True
