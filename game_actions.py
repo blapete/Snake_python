@@ -100,3 +100,16 @@ class GameActions():
         start_message_rectangle = start_message.get_rect()
         start_message_rectangle.topleft = (GameConfig.WINDOW_WIDTH - 410, GameConfig.WINDOW_HEIGHT -  (GameConfig.WINDOW_HEIGHT / 2 - x))
         self.game_window.blit(start_message, start_message_rectangle)
+
+
+    def game_over(self):
+        if (self.snake.snake_coordinates[self.snake.HEAD]['x'] == -1 or 
+            self.snake.snake_coordinates[self.snake.HEAD]['x'] == GameConfig.CELLWIDTH or
+            self.snake.snake_coordinates[self.snake.HEAD]['y'] == -1 or 
+            self.snake.snake_coordinates[self.snake.HEAD]['y'] == GameConfig.CELLHEIGHT):
+            return self.game_reset()
+
+        for cell in self.snake.snake_coordinates[1:]:
+            if (cell['x'] == self.snake.snake_coordinates[self.snake.HEAD]['x'] and
+                cell['y'] == self.snake.snake_coordinates[self.snake.HEAD]['y']):
+                return self.game_reset()
