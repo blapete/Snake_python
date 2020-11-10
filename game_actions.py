@@ -10,7 +10,7 @@ class GameActions():
     def __init__(self):
         pygame.init()
         self.game_window = pygame.display.set_mode((GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT))
-        self.font_style = pygame.font.Font('freesansbold.ttf', 18)
+        self.game_font_style = pygame.font.Font('freesansbold.ttf', 18)
         pygame.display.set_caption('python snake game')
         self.game_clock = pygame.time.Clock()
         self.food = GameFood()
@@ -43,7 +43,7 @@ class GameActions():
 
 
     def create_game_score(self, score):
-        game_score = self.font_style.render('Score: %s' % (score), True, GameConfig.WHITE)
+        game_score = self.game_font_style.render('Score: %s' % (score), True, GameConfig.WHITE)
         game_score_rectangle = game_score.get_rect()
         game_score_rectangle.topleft = (GameConfig.WINDOW_WIDTH - 120, 10)
         self.game_window.blit(game_score, game_score_rectangle)
@@ -96,7 +96,7 @@ class GameActions():
 
 
     def create_start_message(self, x=0):
-        start_message = self.font_style.render('Press any key to play.', True, GameConfig.WHITE)
+        start_message = self.game_font_style.render('Press any key to play.', True, GameConfig.WHITE)
         start_message_rectangle = start_message.get_rect()
         start_message_rectangle.topleft = (GameConfig.WINDOW_WIDTH - 410, GameConfig.WINDOW_HEIGHT -  (GameConfig.WINDOW_HEIGHT / 2 - x))
         self.game_window.blit(start_message, start_message_rectangle)
@@ -113,3 +113,25 @@ class GameActions():
             if (cell['x'] == self.snake.snake_coordinates[self.snake.HEAD]['x'] and
                 cell['y'] == self.snake.snake_coordinates[self.snake.HEAD]['y']):
                 return self.game_reset()
+
+
+    def game_over_window(self):
+        game_over_font_style = pygame.font.Font('freesansbold.ttf', 50)
+        game_text = game_over_font_style.render('Game', True, GameConfig.WHITE)
+        over_text = game_over_font_style.render('Over', True, GameConfig.WHITE)
+        game_rectangle = game_text.get_rect()
+        over_rectangle = over_text.get_rect()
+        game_rectangle.midtop = (GameConfig.WINDOW_WIDTH / 2, 150)
+        over_rectangle.midtop = (GameConfig.WINDOW_WIDTH / 2, game_rectangle.height + 10 + 25 + 125)
+        self.game_window.blit(game_text, game_rectangle)
+        self.game_window.blit(over_text, over_rectangle)
+        self.create_start_message(90)
+        pygame.display.update()
+        pygame.time.wait(500)
+        # clear key presses from event queue
+        self.checkForKeyPress()
+        while True:
+            if self.checkForKeyPress():
+                # clear the event queue
+                pygame.event.get()
+                return
