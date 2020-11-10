@@ -25,3 +25,18 @@ class GameActions():
         for y in range(0, Config.WINDOW_HEIGHT, Config.CELLSIZE):
                       #     (surface, color, start_pos, end_pos, width)
             pygame.draw.line(self.game_window, GameConfig.DARKGRAY, (0, y), (GameConfig.WINDOW_WIDTH, y))
+
+    def create_game_snake(self):
+        for cell in self.snake.snake_coordinates:
+            x = cell['x'] * GameConfig.CELLSIZE
+            y = cell['y'] * GameConfig.CELLSIZE
+            snake_rectangle = pygame.Rect(x, y, GameConfig.CELLSIZE, GameConfig.CELLSIZE)
+            pygame.draw.rect(self.game_window, GameConfig.DARKGREEN, snake_rectangle)
+            snake_inner_rectangle = pygame.Rect(x + 4, y + 4, GameConfig.CELLSIZE - 8, GameConfig.CELLSIZE - 8)
+            pygame.draw.rect(self.game_window, GameConfig.GREEN, snake_inner_rectangle)
+
+    def create_game_food(self):
+        x = self.food.x * GameConfig.CELLSIZE
+        y = self.food.y * GameConfig.CELLSIZE
+        food_rectangle = pygame.Rect(x, y, GameConfig.CELLSIZE, GameConfig.CELLSIZE)
+        pygame.draw.rect(self.game_window, GameConfig.RED, food_rectangle)
