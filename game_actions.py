@@ -47,3 +47,14 @@ class GameActions():
         game_score_rectangle = game_score.get_rect()
         game_score_rectangle.topleft = (GameConfig.WINDOW_WIDTH - 120, 10)
         self.game_window.blit(game_score, game_score_rectangle)
+
+
+    def create_game_frame(self, fps):
+        print(f'clock is ticking at {fps} frames per second')
+        self.game_window.fill(GameConfig.BG_COLOR)
+        self.create_grid_pattern()
+        self.create_game_snake()
+        self.create_game_food()
+        self.create_game_score(len(self.snake.snake_coordinates) - 3)
+        pygame.display.update()
+        self.game_clock.tick(GameConfig.FPS)
