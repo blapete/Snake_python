@@ -71,3 +71,16 @@ class GameActions():
             pygame.quit()
             quit()
         return user_key_up[0].key
+
+
+    def response_to_key_press(self, key_press):
+        if (key_press.key == pygame.K_LEFT or key_press.key == pygame.K_a) and self.snake.direction != self.snake.RIGHT:
+            self.snake.direction = self.snake.LEFT
+        elif (key_press.key == pygame.K_RIGHT or key_press.key == pygame.K_d) and self.snake.direction != self.snake.LEFT:
+            self.snake.direction = self.snake.RIGHT
+        elif (key_press.key == pygame.K_UP or key_press.key == pygame.K_w) and self.snake.direction != self.snake.DOWN:
+            self.snake.direction = self.snake.UP
+        elif (key_press.key == pygame.K_DOWN or key_press.key == pygame.K_s) and self.snake.direction != self.snake.UP:
+            self.snake.direction = self.snake.DOWN
+        elif key_press.key == pygame.K_ESCAPE:
+            pygame.quit()
