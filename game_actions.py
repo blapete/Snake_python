@@ -11,7 +11,7 @@ class GameActions():
         pygame.init()
         self.game_window = pygame.display.set_mode((GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT))
         self.game_font_style = pygame.font.Font('freesansbold.ttf', 18)
-        pygame.display.set_caption('python snake game')
+        pygame.display.set_caption('python snake game - Peter Blank')
         self.game_clock = pygame.time.Clock()
         self.food = GameFood()
         self.snake = GameSnake()
