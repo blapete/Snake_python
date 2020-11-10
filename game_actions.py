@@ -93,3 +93,10 @@ class GameActions():
         self.food = GameFood()
         self.snake = GameSnake()
         return True
+
+
+    def create_start_message(self, x=0):
+        start_message = self.font_style.render('Press any key to play.', True, GameConfig.WHITE)
+        start_message_rectangle = start_message.get_rect()
+        start_message_rectangle.topleft = (GameConfig.WINDOW_WIDTH - 410, GameConfig.WINDOW_HEIGHT -  (GameConfig.WINDOW_HEIGHT / 2 - x))
+        self.game_window.blit(start_message, start_message_rectangle)
