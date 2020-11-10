@@ -19,6 +19,6 @@ virtualenv environment
 pip install pygame
 ```
 ```
-python run.py
+python game_start.py
 ```
 
