@@ -19,3 +19,5 @@ pip install pygame
 ```
 python run.py
 ```
+
+<img src="./assets/snakegame.gif" width="35%">
