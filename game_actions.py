@@ -144,3 +144,25 @@ class GameActions():
                     return
             self.create_start_message()
             pygame.display.update()
+
+
+    def game_run(self):
+        self.game_start_window()
+        while True:
+            self.game_run_loop()
+            self.game_over_window()
+
+
+
+    def game_run_loop(self):
+        while True:
+            for user_input in pygame.event.get():
+                if user_input.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                elif user_input.type == pygame.KEYDOWN:
+                    self.response_to_key_press(user_input)
+            self.snake.update_snake(self.food)
+            self.create_game_frame()
+            if self.game_over():
+                break
