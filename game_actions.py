@@ -22,7 +22,7 @@ class GameActions():
                       #     (surface, color, start_pos, end_pos, width)
             pygame.draw.line(self.game_window, GameConfig.DARKGRAY, (x, 0), (x, GameConfig.WINDOW_HEIGHT))
         # horizontal line
-        for y in range(0, Config.WINDOW_HEIGHT, Config.CELLSIZE):
+        for y in range(0, GameConfig.WINDOW_HEIGHT, GameConfig.CELLSIZE):
                       #     (surface, color, start_pos, end_pos, width)
             pygame.draw.line(self.game_window, GameConfig.DARKGRAY, (0, y), (GameConfig.WINDOW_WIDTH, y))
 
@@ -129,9 +129,9 @@ class GameActions():
         pygame.display.update()
         pygame.time.wait(500)
         # clear key presses from event queue
-        self.checkForKeyPress()
+        self.check_user_key_press()
         while True:
-            if self.checkForKeyPress():
+            if self.check_user_key_press():
                 # clear the event queue
                 pygame.event.get()
                 return

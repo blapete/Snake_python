@@ -10,8 +10,8 @@ class GameSnake():
 
   def __init__(self):
     self.direction = self.RIGHT
-    self.x = random.randint(5, GameConfig.CELLWIDTH - 15)
-    self.y = random.randint(5, GameConfig.CELLHEIGHT - 6)
+    self.x = randint(5, GameConfig.CELLWIDTH - 15)
+    self.y = randint(5, GameConfig.CELLHEIGHT - 6)
     self.snake_coordinates = [{'x': self.x, 'y': self.y}, {'x': self.x - 1, 'y': self.y}, {'x': self.x - 2, 'y': self.y}]
 
   def update_snake(self, food):
