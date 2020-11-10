@@ -135,3 +135,12 @@ class GameActions():
                 # clear the event queue
                 pygame.event.get()
                 return
+
+
+    def game_start_window(self):
+        while True:
+            for key_press in pygame.event.get():
+                if key_press.type == pygame.KEYDOWN:
+                    return
+            self.create_start_message()
+            pygame.display.update()
